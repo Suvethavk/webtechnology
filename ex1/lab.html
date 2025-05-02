@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url('pexels-peacefullens-2535799.jpg') no-repeat center center fixed;
+            background-color: #f9f9f9;
+            background-size: cover;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            width: 100%;
+            border-bottom: 4px solid #357ABD;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            background-color: #f1f1f1;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #357ABD;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        section, article, aside {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        section {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        aside {
+            flex: 1;
+        }
+
+        section h3, article h3, aside h3 {
+            margin-bottom: 15px;
+        }
+
+        section h3 {
+            color: #357ABD;
+        }
+
+        article h3 {
+            color: #e67e22;
+        }
+
+        aside h3 {
+            color: #2ecc71;
+        }
+
+        #testimonials {
+            background-color: #ffe0b2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 100%;
+        }
+        #contact{
+            color: white;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            margin-top: 20px;
+            border-top: 4px solid #357ABD;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: rgb(43, 199, 233);
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #ffcc80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>John Doe - Full Stack Developer</h1>
+        <p>Building Modern and Scalable Web Applications</p>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="project.html">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section>
+            <h3>About Me</h3>
+            <p>Hello! I’m John Doe, a passionate Full Stack Developer with experience in building responsive and interactive web applications. I specialize in React, Node.js, and cloud-based solutions.</p>
+        </section>
+        <article>
+            <h3>Recent Projects</h3>
+            <p>- <strong>Portfolio Website:</strong> A fully responsive portfolio built using HTML, CSS, and JavaScript.</p>
+            <p>- <strong>E-commerce Platform:</strong> Developed an e-commerce site with secure payment integration.</p>
+            <p>- <strong>Chat App:</strong> A real-time chat application using React and Firebase.</p>
+        </article>
+        <aside>
+            <h3>Skills</h3>
+            <ul>
+                <li>HTML5, CSS3, JavaScript</li>
+                <li>React, Node.js, Express</li>
+                <li>MongoDB, Firebase</li>
+                <li>REST APIs, Git, Docker</li>
+            </ul>
+        </aside>
+        <div id="testimonials">
+            <h3>Testimonials</h3>
+            <p>"John is a talented developer with an eye for detail. His work on our project was exceptional!" - Client A</p>
+            <p>"I highly recommend John for any web development project. He delivers on time and exceeds expectations." - Client B</p>
+        </div>
+    </main>
+    <div id="contact">
+        <h3>Contact Me</h3>
+        <p>Email: john.doe@example.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <div class="social-icons">
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">Twitter</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 John Doe. All rights reserved.</p>
+        <p>Email: john.doe@example.com | Phone: (123) 456-7890</p>
+    </footer>
+</body>
+</html>
