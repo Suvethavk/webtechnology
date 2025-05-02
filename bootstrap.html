@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #ffd700; /* Yellow */
+            --light-color: #f8f9fa; /* Light Gray */
+            --dark-color: #343a40; /* Dark Gray */
+            --accent-color: #ff5733; /* Accent Red */
+            --about-bg-color: #e3f2fd; /* Light Blue for About Section */
+            --skills-bg-color: #f1f1f1; /* Soft Gray for Skills Section */
+            --testimonials-bg-color: #ffecd2; /* Light Orange for Testimonials Section */
+            --contact-bg-color: #343a40; /* Dark background for Contact */
+        }
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        .navbar {
+            margin-bottom: 50px;
+            background-color: var(--primary-color);
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            color: white;
+            text-transform: uppercase;
+        }
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 30px;
+        }
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            line-height: 1.8;
+        }
+        .card {
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-body {
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+        .profile-img {
+            border-radius: 50%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 30px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: var(--accent-color);
+        }
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+        }
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        .testimonials {
+            background-color: var(--testimonials-bg-color);
+            padding: 50px 0;
+        }
+        .testimonial-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .testimonial-card p {
+            font-size: 1.2rem;
+        }
+        .testimonial-card .author {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .testimonial-card .position {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+        }
+        #about {
+            background-color: var(--about-bg-color);
+        }
+        #skills {
+            background-color: var(--skills-bg-color);
+        }
+        #contact {
+            background-color: var(--contact-bg-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">John Doe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#about">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4">John Doe</h1>
+            <p class="lead">Web Developer | Programmer | Creator</p>
+            <a href="#contact" class="btn btn-custom mt-3">Contact Me</a>
+        </header>
+        <div id="about" class="row mb-5">
+            <div class="col-lg-6">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-description">I am a passionate web developer with a strong background in building web applications using modern technologies. I am constantly learning new tools and frameworks to stay updated with industry standards. I believe in writing clean, maintainable code and always strive to enhance the user experience.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://th.bing.com/th/id/OIP.AQtvP5FcfiEMQpu14ueJCgHaGU?rs=1&pid=ImgDetMain" alt="John Doe" class="profile-img img-fluid mb-3" width="250">
+            </div>
+        </div>
+        <div id="skills" class="text-center mb-5">
+            <h2 class="section-title">My Skills</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow-lg rounded mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Fast Development</h5>
+                            <p class="card-text">I build optimized applications with efficient, scalable code.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-lg rounded mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Modern UI/UX</h5>
+                            <p class="card-text">I create beautiful and intuitive user interfaces.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-lg rounded mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Robust Security</h5>
+                            <p class="card-text">I ensure strong security measures in applications for data protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title text-center">What Clients Say</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="testimonial-card">
+                            <p>"John is a talented developer with an eye for detail. His work is always top-notch!"</p>
+                            <p class="author">Client A</p>
+                            <p class="position">CEO, Company X</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="testimonial-card">
+                            <p>"Highly recommend John for any web development project! His communication and skills are amazing."</p>
+                            <p class="author">Client B</p>
+                            <p class="position">Marketing Head, Company Y</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contact" class="text-center text-white py-5">
+            <h3>Contact Me</h3>
+            <p>Email: john.doe@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <div class="footer-links">
+                <a href="#" class="text-info">LinkedIn</a>
+                <a href="#" class="text-info">GitHub</a>
+                <a href="#" class="text-info">Twitter</a>
+            </div>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2025 John Doe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
