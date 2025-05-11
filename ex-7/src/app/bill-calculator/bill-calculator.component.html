@@ -1,0 +1,71 @@
+<div class="container py-4">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Restaurant Bill Calculator</h3>
+      </div>
+      <div class="card-body">
+        <!-- Customer Info -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Customer Name</label>
+            <input type="text" class="form-control" [(ngModel)]="customerName">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Table Number</label>
+            <input type="text" class="form-control" [(ngModel)]="tableNumber">
+          </div>
+        </div>
+        <!-- Item Selection -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Select Item</label>
+            <select class="form-select" [(ngModel)]="selectedItem">
+              <option value="">-- Select Item --</option>
+              <option *ngFor="let item of priceKeys" [value]="item">{{item}} - ₹{{prices[item]}}</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" [(ngModel)]="quantity" min="1">
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-danger w-100" (click)="addItem()">Add</button>
+          </div>
+        </div>
+        <!-- Order List -->
+        <div class="mt-4">
+          <h4>Order Items</h4>
+          <div *ngIf="orders.length === 0" class="text-center text-muted">No items added to bill yet</div>
+          <div *ngFor="let order of orders; let i = index" class="d-flex justify-content-between border-bottom p-2">
+            <div>
+              <span class="fw-bold">{{order.item}}</span>
+              <span class="text-muted">x{{order.quantity}}</span>
+            </div>
+            <div>
+              <span class="me-3">₹{{order.total}}</span>
+              <button class="btn btn-sm btn-outline-danger ms-2" (click)="removeItem(i)">×</button>
+            </div>
+          </div>
+        </div>
+        <!-- Bill Summary -->
+        <div *ngIf="orders.length > 0" class="mt-4">
+          <h4>Bill Summary</h4>
+          <table class="table">
+            <tr>
+              <td>Subtotal:</td>
+              <td class="text-end">₹{{subtotal.toFixed(2)}}</td>
+            </tr>
+            <tr>
+              <td>Tax (5%):</td>
+              <td class="text-end">₹{{(subtotal * 0.05).toFixed(2)}}</td>
+            </tr>
+            <tr class="fw-bold">
+              <td>Total:</td>
+              <td class="text-end">₹{{(subtotal * 1.05).toFixed(2)}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

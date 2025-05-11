@@ -1,0 +1,39 @@
+<!-- <div class="hero-section text-center py-5 bg-light">
+  <h1>Welcome to Grand Feast</h1>
+  <p class="lead">Experience the finest cuisine</p>
+  <a routerLink="/bill-calculator" class="btn btn-primary mt-3">Calculate Bill</a>
+</div>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Our Specials</h2>
+  <div class="row">
+    @for(item of featuredItems; track item.name) {
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img [src]="item.image" class="card-img-top" [alt]="item.name" 
+               onerror="this.src='assets/placeholder.jpg'">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text text-primary">₹{{item.price}}</p>
+            <a href="#" class="btn btn-sm btn-outline-primary">Order Now</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<footer class="bg-dark text-white mt-5 py-3">
+  <div class="container text-center">
+    <p>&copy; {{currentYear}} Grand Feast. All rights reserved.</p>
+  </div>
+</footer> -->
+<h2>Restaurant Menu</h2>
+<ul>
+  <li *ngFor="let item of foodItems">
+    {{item.name}} - ₹{{item.price}}
+  </li>
+</ul>
+<footer>
+  <p>&copy; {{currentYear}} Grand Feast. All rights reserved.</p>
+</footer>

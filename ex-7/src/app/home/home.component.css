@@ -1,0 +1,32 @@
+/* body {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: none;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+  border-color: #bb2d3b;
+}
+
+.social-icons i {
+  font-size: 1.2rem;
+} */
