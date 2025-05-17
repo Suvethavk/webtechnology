@@ -1,0 +1,205 @@
+<div class="header">
+  <div class="logo">
+    <i class="fas fa-wallet"></i>
+    WANDER WALLET 
+  </div>
+  <div class="auth-buttons">
+    <span style="color: white; margin-right: 10px;">
+      <i class="fas fa-user"></i> {{authService.currentUserValue?.fullName}}
+    </span>
+    <button class="button outline-button" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab" [class.active]="activeTab === 'budget-calculator'" 
+         (click)="switchTab('budget-calculator')">Budget Calculator</div>
+    <div class="tab" [class.active]="activeTab === 'expense-tracker'" 
+         (click)="switchTab('expense-tracker')">Expense Tracker</div>
+  </div>
+  
+  <!-- Budget Calculator Tab -->
+  <div class="tab-content" [class.active]="activeTab === 'budget-calculator'">
+    <h2>Plan Your Travel Budget</h2>
+    <p>Calculate how much your trip will cost before you go.</p>
+    
+    <div class="calculator-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="calc-destination">Destination</label>
+          <input type="text" id="calc-destination" formControlName="destination" placeholder="City, Country">
+        </div>
+        <div class="form-group">
+          <label for="calc-duration">Duration (days)</label>
+          <input type="number" id="calc-duration" min="1" formControlName="duration">
+        </div>
+        <div class="form-group">
+          <label for="calc-travelers">Travelers</label>
+          <input type="number" id="calc-travelers" min="1" formControlName="travelers">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="calc-accommodation">Accommodation Type</label>
+          <select id="calc-accommodation" formControlName="accommodation">
+            <option value="hostel">Hostel</option>
+            <option value="budget">Budget Hotel</option>
+            <option value="mid">Mid-range Hotel</option>
+            <option value="luxury">Luxury Hotel</option>
+            <option value="rental">Vacation Rental</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="calc-food">Food Budget</label>
+          <select id="calc-food" formControlName="food">
+            <option value="low">Low (Cook most meals)</option>
+            <option value="medium">Medium (Mix of eating out and cooking)</option>
+            <option value="high">High (Restaurants for most meals)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="calc-activities">Activities Budget</label>
+          <select id="calc-activities" formControlName="activities">
+            <option value="low">Low (Free/cheap activities)</option>
+            <option value="medium">Medium (Some paid attractions)</option>
+            <option value="high">High (Premium experiences)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="calc-transport">Transportation</label>
+          <select id="calc-transport" formControlName="transport">
+            <option value="public">Public Transportation</option>
+            <option value="rental">Car Rental</option>
+            <option value="taxi">Taxis/Rideshares</option>
+            <option value="mix">Mix of options</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="calc-currency">Currency</label>
+          <select id="calc-currency" formControlName="currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="JPY">JPY (¥)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button type="button" class="button primary-button" (click)="calculateBudget()">Calculate Budget</button>
+        </div>
+      </div>
+      
+      <div class="calculator-result" id="budget-result" *ngIf="budgetResult">
+        <h3>Estimated Budget</h3>
+        <p>Based on your selections, your estimated budget for {{budgetForm.value.travelers}} travelers for {{budgetForm.value.duration}} days in {{budgetForm.value.destination || 'your destination'}} is:</p>
+        <h2>{{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.totalMin.toLocaleString()}} - {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.totalMax.toLocaleString()}}</h2>
+        <p><strong>Breakdown:</strong></p>
+        <ul>
+          <li>Accommodation: {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.accommodation.min.toLocaleString()}} - {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.accommodation.max.toLocaleString()}}</li>
+          <li>Food & Drinks: {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.food.min.toLocaleString()}} - {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.food.max.toLocaleString()}}</li>
+          <li>Transportation: {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.transport.min.toLocaleString()}} - {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.transport.max.toLocaleString()}}</li>
+          <li>Activities: {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.activities.min.toLocaleString()}} - {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.activities.max.toLocaleString()}}</li>
+          <li>Miscellaneous: {{getCurrencySymbol(budgetForm.value.currency)}}{{budgetResult.misc.toLocaleString()}}</li>
+        </ul>
+        <p><em>Note: This is an estimate. Actual costs may vary.</em></p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Expense Tracker Tab -->
+  <div class="tab-content" [class.active]="activeTab === 'expense-tracker'">
+    <h2>Track Your Expenses</h2>
+    <p>Keep track of what you're spending during your trip.</p>
+    
+    <div class="summary-box">
+      <h3>Trip Summary</h3>
+      <div class="summary-flex">
+        <div class="summary-item">
+          <div class="summary-value">{{getCurrencySymbol(budgetForm.value.currency)}}{{summary.total.toFixed(2)}}</div>
+          <div class="summary-label">Total Spent</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value">{{getCurrencySymbol(budgetForm.value.currency)}}{{summary.budget.toFixed(2)}}</div>
+          <div class="summary-label">Budget</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value" [style.color]="summary.remaining < 0 ? '#e74c3c' : 
+                (summary.remaining < summary.budget * 0.2 ? '#f39c12' : '')">
+            {{getCurrencySymbol(budgetForm.value.currency)}}{{summary.remaining.toFixed(2)}}
+          </div>
+          <div class="summary-label">Remaining</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-value">{{getCurrencySymbol(budgetForm.value.currency)}}{{summary.daily.toFixed(2)}}</div>
+          <div class="summary-label">Daily Avg</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="expense-form">
+      <h3>Add New Expense</h3>
+      <form [formGroup]="expenseForm" (ngSubmit)="addExpense()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expense-description">Description</label>
+            <input type="text" id="expense-description" formControlName="description" placeholder="e.g. Museum Tickets">
+          </div>
+          <div class="form-group">
+            <label for="expense-amount">Amount</label>
+            <input type="number" id="expense-amount" min="0" step="0.01" formControlName="amount">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expense-category">Category</label>
+            <select id="expense-category" formControlName="category">
+              <option value="accommodations">Accommodations</option>
+              <option value="food">Food & Drinks</option>
+              <option value="transportation">Transportation</option>
+              <option value="activities">Activities & Attractions</option>
+              <option value="shopping">Shopping</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="expense-date">Date</label>
+            <input type="date" id="expense-date" formControlName="date">
+          </div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <button type="submit" class="button primary-button">Add Expense</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="expense-list">
+      <h3>Recent Expenses</h3>
+      <div id="expenses-container">
+        <div class="expense-item" *ngFor="let expense of expenses">
+          <div class="expense-details">
+            <span class="expense-category category-{{expense.category}}">{{getCategoryDisplay(expense.category)}}</span>
+            <h4>{{expense.description}}</h4>
+            <span class="expense-date">{{expense.date | date:'MMM d, y'}}</span>
+          </div>
+          <div class="expense-amount">{{getCurrencySymbol(budgetForm.value.currency)}}{{expense.amount.toFixed(2)}}</div>
+          <div class="expense-actions">
+            <button title="Edit"><i class="fas fa-edit"></i></button>
+            <button title="Delete" (click)="deleteExpense(expense.id)"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chart-container">
+      <h3>Spending by Category</h3>
+      <div id="expense-chart">
+        <!-- Chart will be generated here -->
+      </div>
+    </div>
+  </div>
+</div>
